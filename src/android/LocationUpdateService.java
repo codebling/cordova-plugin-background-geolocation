@@ -33,6 +33,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.BroadcastReceiver;
+import android.support.v4.content.LocalBroadcastManager;
 
 import android.location.Location;
 import android.location.Criteria;
@@ -50,7 +51,8 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 
 import android.util.Log;
-import android.widget.Toast;
+import android.widget.Toast;;
+import org.json.JSONException;
 
 import static java.lang.Math.*;
 
@@ -413,13 +415,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         // Go ahead and cache, push to server
         lastLocation = location;
         persistLocation(location);
-
-        if (this.isNetworkConnected()) {
-            Log.d(TAG, "Scheduling location network post");
-            schedulePostLocations();
-        } else {
-            Log.d(TAG, "Network unavailable, waiting for now");
-        }
+        broadcastLocation(location);
     }
 
     /**
@@ -709,6 +705,21 @@ public class LocationUpdateService extends Service implements LocationListener {
             Log.d(TAG, "Persisted Location: " + savedLocation);
         } else {
             Log.w(TAG, "Failed to persist location");
+        }
+    }
+
+    private void broadcastLocation (Location location) {
+        Log.d(TAG, "Broadcasting update message: " + location.toString());
+        try {
+            String locStr = com.tenforwardconsulting.cordova.bgloc.data.Location.fromAndroidLocation(location).toJSONObject().toString();
+            Intent intent = new Intent(Constant.FILTER);
+            intent.putExtra(Constant.COMMAND, Constant.UPDATE_PROGRESS);
+            // intent.putExtra(Constant.DATA, location);
+            intent.putExtra(Constant.DATA, locStr);
+            // LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+            this.sendBroadcast(intent);
+        } catch (JSONException e) {
+            Log.w(TAG, "Failed to broadcast location");
         }
     }
 

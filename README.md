@@ -1,3 +1,5 @@
+Warning: You probably have to set your cordova app to keep running by keepRunning property to true
+
 Premium Version
 ==============================
 

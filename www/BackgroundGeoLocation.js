@@ -101,6 +101,15 @@ module.exports = {
             'addStationaryRegionListener',
             []);
     },
+
+    isLocationEnabled: function(success, failure) {
+        exec(success || function() {},
+             failure || function() {},
+             'BackgroundGeoLocation',
+             'isLocationEnabled',
+             []);
+    },
+
     apply: function(destination, source) {
         source = source || {};
         for (var property in source) {
