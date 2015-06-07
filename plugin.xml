@@ -22,6 +22,7 @@
 
     <!-- android -->
     <platform name="android">
+        <source-file src="src/android/Constant.java" target-dir="src/com/tenforwardconsulting/cordova/bgloc/Constant.java" />
         <source-file src="src/android/BackgroundGpsPlugin.java" target-dir="src/com/tenforwardconsulting/cordova/bgloc" />
         <source-file src="src/android/LocationUpdateService.java" target-dir="src/com/tenforwardconsulting/cordova/bgloc" />
         <source-file src="src/android/data/DAOFactory.java" target-dir="src/com/tenforwardconsulting/cordova/bgloc/data" />
@@ -34,6 +35,10 @@
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <service android:name="com.tenforwardconsulting.cordova.bgloc.LocationUpdateService" android:enabled="true" android:process=":remote" />
+                <intent-filter>
+                    <action android:name="com.tenforwardconsulting.cordova.bgloc.communication.REQUEST_PROCESSED" />
+                </intent-filter>
+            </service>
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
