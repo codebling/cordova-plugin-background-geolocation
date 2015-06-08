@@ -1,18 +1,8 @@
-Warning: You probably have to set your cordova app to keep running by keepRunning property to true
+### This is a fork of the original background geolocation plugin which incorporates several community contributions, most notably:
 
-Premium Version
-==============================
-
-A new [Premium Version](http://christocracy.github.io/cordova-background-geolocation/) is available.
-- Implements the latest Android Fused GeoLocation and ActivityRecognition APIs for **much-improved** battery performance.
-- Auto-start Android & iOS on device-boot.
-- Android now executes your ```callback``` just like **iOS**!
-- Both iOS & Android can optionally **HTTP** POST locations to your server in the native code.  Optional **batch-mode**.
-- Native **SQLite persistence** layer (for when no network is available).  Plugin provides a javascript API to fetch and/or sync the locations to your server.
-- **Geofencing**.  Both iOS and Android allow you to add arbitrary circular geofences which execute your javascript-callback when a crossing-event occurs.
-
-![Android Battery Performance](/images/android-battery.png "Android battery performance")
-![SampleApp](/images/android-sample-app.png "SampleApp")
+- Android version uses the Fused GeoLocation API for improved battery performance.
+- Android version uses callbacks, the same way that the ios version does. (Per the notes from that change, you may need to set your cordova app to keep running by keepRunning property to true)
+- Improved Windows Phone battery life, accuracy and performance
 
 BackgroundGeoLocation
 ==============================
