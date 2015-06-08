@@ -50,7 +50,7 @@
                 <param name="android-package" value="com.tenforwardconsulting.cordova.bgloc.BackgroundGpsPlugin"/>
             </feature>
         </config-file>
-        <framework src="libs/google-play-services_lib" custom="true" />
+        <framework src="com.google.android.gms:play-services-plus:+" />
      </platform>          
 
      <platform name="ios">
