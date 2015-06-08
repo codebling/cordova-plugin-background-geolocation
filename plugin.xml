@@ -55,7 +55,7 @@
                 <param name="android-package" value="com.tenforwardconsulting.cordova.bgloc.BackgroundGpsPlugin"/>
             </feature>
         </config-file>
-        <framework src="com.google.android.gms:play-services-location" />
+        <framework src="com.google.android.gms:play-services-location:+" />
      </platform>          
 
      <platform name="ios">
